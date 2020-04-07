@@ -5,7 +5,7 @@ import styled from 'styled-components/native';
 import NewsItem from './NewsItem';
 import ModalComponent from './Modal';
 import SkeletonLoader from './SkeletonLoader';
-import {TimeOnList} from './Time';
+import {TimeOnHeader, TimeOnList} from './Time';
 
 
 export default class NewsList extends Component {
@@ -87,17 +87,18 @@ export default class NewsList extends Component {
 
         return (
             <View >
-                <TouchableOpacity onPress={handleDisplayNews} style={{width: '100%', height: height / 3, elevation: 3}} >
+                <TouchableOpacity
+                    onPress={handleDisplayNews}
+                    style={{backgroundColor:'#6780a4', width: '100%', height: height / 2.75, elevation: 3}} >
                     <Image
                         source={{ uri: urlToImage != null ? urlToImage : placeholder_url }}
                         style={{width: '100%', height: height / 4}}
                     />
                     <View style={{padding:5, marginBottom: 2}}>
-                        <Text note style={{fontSize:15, fontWeight:'700' }}>{title}</Text>
-                        <TimeOnList time={publishedAt} />
+                        <Text numberOfLines={2} style={{color: '#000', fontSize:16, fontFamily: 'Roboto_medium' }}>{title}</Text>
+                        <TimeOnHeader time={publishedAt} />
                     </View>
                 </TouchableOpacity>
-
             </View>
         );
     }
@@ -114,5 +115,5 @@ export default class NewsList extends Component {
 }
 
 const CustomFlatList= styled(FlatList) `
-     background-color: #eeeeee; 
+     background-color: #ccd7e6; 
 `;
