@@ -31,11 +31,11 @@ export default class Login extends Component {
     return (
       <SafeAreaProvider >
 
-        <StatusBar barStyle="dark-content" />
+        <StatusBar backgroundColor={'#283a51'} barStyle="light-content" />
         <SavedNewsProvider>
            <MainScreenRouter />
         </SavedNewsProvider>
-        
+
       </SafeAreaProvider>
     )
   }

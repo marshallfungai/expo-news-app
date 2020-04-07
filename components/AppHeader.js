@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, Platform} from 'react-native';
+import {Image, Platform, StatusBar} from 'react-native';
 import propTypes from 'prop-types';
 import {Body, Button, Header, Icon, Left, Right} from 'native-base';
 
@@ -19,7 +19,11 @@ export default class AppHeader extends Component {
 
         return (
 
-            <Header hasTabs={hastabs}  style={{backgroundColor:'#3a5475', marginTop: Platform.OS === 'android' ? 0 : 20}}>
+            <Header
+                androidStatusBarColor={'#283a51'}
+                iosBarStyle={'light-content'}
+                hasTabs={hastabs}
+                style={{backgroundColor:'#3a5475', marginTop: Platform.OS === 'android' ? 0 : 20}}>
                 <Left>
                     {
                         isHome?
