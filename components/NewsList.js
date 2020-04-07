@@ -7,7 +7,7 @@ import { getNews } from '../services/newsData';
 import NewsItem from './NewsItem';
 import ModalComponent from './Modal';
 import SkeletonLoader from './SkeletonLoader';
-import Time from './Time';
+import {TimeOnList} from './Time';
 
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeColors } from 'react-navigation';
@@ -23,9 +23,9 @@ export default class NewsList extends Component {
       placeholder_url: 'https://via.placeholder.com/150',
       setModalVisibility: false,
       modalNewsData: {}
-    }; 
+    };
   }
-  
+
   handleItemDataOnPress = (newsData)=>{
     this.setState({
       setModalVisibility: true,
@@ -34,7 +34,7 @@ export default class NewsList extends Component {
   }
 
   /***
-   
+
   */
   handleModalClose = () => {
     this.setState({
@@ -43,19 +43,19 @@ export default class NewsList extends Component {
       })
     }
 
-     
+
   componentDidMount () {
      const {articles} = this.props;
-     
+
      if(articles) {
       this.setState({
         data: articles,
         isLoadiing: false
       });
      }
-    
+
   }
-  
+
 
   render() {
 
@@ -71,10 +71,10 @@ export default class NewsList extends Component {
 
 
     return (
-        <>  
-                    
+        <>
+
              {loadView}
-                <ModalComponent 
+                <ModalComponent
                 showModal={this.state.setModalVisibility}
                 newsData={this.state.modalNewsData}
                 onClose ={this.handleModalClose}
@@ -89,8 +89,8 @@ export default class NewsList extends Component {
     const placeholder_url = 'https://loremflickr.com/320/140/turkey,cyprus/all';
 
     const handleDisplayNews =  () => {
-       
-     
+
+
        urlToImage != null ? urlToImage : placeholder_url;
       onPressData({  title, content, urlToImage, publishedAt });
   }
@@ -105,17 +105,17 @@ export default class NewsList extends Component {
                   />
                 <View style={{padding:5, marginBottom: 2}}>
                   <Text note style={{fontSize:15, fontWeight:'700' }}>{title}</Text>
-                  <Text note style={{fontSize: 12, marginBottom:10}}><Time time={publishedAt} /> </Text>
-                
-                 </View> 
-          </TouchableOpacity>                 
+                  <TimeOnList time={publishedAt} />
 
-       </View>  
+                 </View>
+          </TouchableOpacity>
+
+       </View>
     );
   }
 
   Item = ({ item, index }) =>{
-    
+
     if(index == 0) {
       return (<this.HeaderNews onPressData={this.handleItemDataOnPress} newsData={item} /> );
     }

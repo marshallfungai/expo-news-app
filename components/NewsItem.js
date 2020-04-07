@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Thumbnail, List, ListItem, Text, Left, Body, Right, Button, View, Icon } from 'native-base';
-import Time from './Time';
+import {TimeOnList} from './Time';
 import styled from 'styled-components/native';
 
 
@@ -15,7 +15,7 @@ export default class NewsItem extends Component {
     }
 
     handleDisplayNews() {
-       
+
         const {title, content, urlToImage, publishedAt} = this.props.newsData;
         const placeholder_main = 'https://via.placeholder.com/300x200';
         urlToImage != null ? urlToImage : placeholder_main;
@@ -37,14 +37,14 @@ export default class NewsItem extends Component {
 
                     {/* <Text note numberOfLines={3}>{this.state.newsItem.description} . .</Text> */}
                     <View style={{ marginTop: 5, borderTopColor: '#ccc', display: 'flex', flexDirection: 'row' }}>
-                         <Text style={{backgroundColor:'#cc232a', color:'#fff', padding: 5, paddingBottom: 2, paddingTop: 2, marginRight: 5, fontSize: 11}}>{this.props.category}</Text> 
-                        <Text style={{ color:'#ccc'}}> || </Text> 
-                        <Time time={this.state.newsItem.publishedAt} /> 
-                        
+                         <Text style={{backgroundColor:'#cc232a', color:'#fff', padding: 5, paddingBottom: 2, paddingTop: 2, marginRight: 5, fontSize: 11}}>{this.props.category}</Text>
+                        <Text style={{ color:'#ccc'}}> || </Text>
+                        <TimeOnList time={this.state.newsItem.publishedAt} />
+
                      </View>
-                   
+
                 </Body>
-                
+
             </CustomListItem>
 
 
