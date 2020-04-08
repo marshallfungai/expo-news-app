@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Container, Header, Content, Thumbnail, List, ListItem, Text, Left, Body, Right, Button, View, Icon } from 'native-base';
-import Time from './Time';
+import React, {Component} from 'react';
+import {Body, Left, ListItem, Text, Thumbnail, View, Icon} from 'native-base';
+import {TimeOnList} from './Time';
 import styled from 'styled-components/native';
 
 
@@ -15,7 +15,7 @@ export default class NewsItem extends Component {
     }
 
     handleDisplayNews() {
-       
+
         const {title, content, urlToImage, publishedAt} = this.props.newsData;
         const placeholder_main = 'https://via.placeholder.com/300x200';
         urlToImage != null ? urlToImage : placeholder_main;
@@ -26,25 +26,25 @@ export default class NewsItem extends Component {
 
         const placeholder_url = 'https://via.placeholder.com/150';
         return (
-
-
             <CustomListItem avatar onPress={this.handleDisplayNews} noBorder={true} >
                 <Left>
-                    <Thumbnail square source={{ uri: this.state.newsItem.urlToImage != null ? this.state.newsItem.urlToImage : placeholder_url }} />
+                    <Thumbnail square large source={{ uri: this.state.newsItem.urlToImage != null ? this.state.newsItem.urlToImage : placeholder_url }} />
                 </Left>
                 <Body>
                     <Text style={{color:'#3a5475', fontSize: 17}} numberOfLines={2}>{this.state.newsItem.title}</Text>
 
                     {/* <Text note numberOfLines={3}>{this.state.newsItem.description} . .</Text> */}
-                    <View style={{ marginTop: 5, borderTopColor: '#ccc', display: 'flex', flexDirection: 'row' }}>
-                         <Text style={{backgroundColor:'#cc232a', color:'#fff', padding: 5, paddingBottom: 2, paddingTop: 2, marginRight: 5, fontSize: 11}}>{this.props.category}</Text> 
-                        <Text style={{ color:'#ccc'}}> || </Text> 
-                        <Time time={this.state.newsItem.publishedAt} /> 
-                        
-                     </View>
-                   
+                    <View style={{ marginTop: 10, borderTopColor: '#ccc', justifyContent: 'space-between', flexDirection: 'row' }}>
+                        <Text style={{borderRadius: 10, textTransform: 'capitalize', fontFamily: 'Roboto', backgroundColor:'#cc232a', color:'#fff', padding: 5, fontSize: 11}}>
+                            {this.props.category ? this.props.category.replace('-', ' ') : this.props.category}
+                        </Text>
+                        <Icon type={'Ionicons'} name={'ios-git-commit'} style={{fontSize: 15, paddingVertical: 5}}/>
+                        <TimeOnList time={this.state.newsItem.publishedAt} extraStyle={{padding: 5}}/>
+
+                    </View>
+
                 </Body>
-                
+
             </CustomListItem>
 
 
@@ -54,8 +54,9 @@ export default class NewsItem extends Component {
 
 const CustomListItem = styled(ListItem) `
      background-color: #fff;
-     margin: 5px;
+     margin: 8px;
      padding: 5px;
      elevation: 1;
+     borderRadius: 10px;
 `;
 

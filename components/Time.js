@@ -1,20 +1,17 @@
-import React, { Component } from 'react';
-import { Container, Header, Content, Thumbnail, List, ListItem, Text, Left, Body, Right, Button, View, Icon } from 'native-base';
+import React from 'react';
+import {Text} from 'native-base';
 import moment from 'moment';
 
-export default class Time extends Component {
+export const TimeOnHeader = (props)  => {
+    const time = moment(props.date || moment.now()).fromNow();
+    return (
+        <Text style={{textTransform: 'capitalize', textAlign: 'right', fontFamily: 'Roboto', color:'#fff', fontSize: 13, paddingHorizontal: 10}}> {time}</Text>
+    );
+};
 
-    constructor(props){
-        super(props);
-        this.date = props.time;
-    }
-
-    render() {
-        
-        const time = moment(this.date || moment.now()).fromNow();
-        return (
-
-            <Text style={{color:'#cc232a'}} note> {time}</Text>
-        );
-    }
-}
+export const TimeOnList = (props)  => {
+    const time = moment(props.date || moment.now()).fromNow();
+    return (
+        <Text style={[{textTransform: 'capitalize', fontSize: 11, fontFamily: 'Roboto', color:'#cc232a'}, props.extraStyle]}> {time}</Text>
+    );
+};
