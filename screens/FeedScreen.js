@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ActivityIndicator} from 'react-native';
+import {ActivityIndicator, Platform} from 'react-native';
 import {Content, ScrollableTab, Tab, Tabs} from 'native-base';
 import AppHeader from '../components/AppHeader';
 import NewsList from '../components/NewsList';
@@ -44,7 +44,7 @@ export default class FeedScreen extends Component {
             <Content padder={false}>
                 <Tabs
                     tabBarUnderlineStyle={{ backgroundColor: '#395475'}}
-                    renderTabBar={()=> <ScrollableTab/>} >
+                    renderTabBar={()=> Platform.OS === 'android' ? <ScrollableTab/> : <></>} >
                     <Tab
                         tabStyle={{backgroundColor: '#395475'}}
                         activeTabStyle={{backgroundColor: '#cc232a'}}

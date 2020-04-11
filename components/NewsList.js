@@ -57,7 +57,7 @@ export default class NewsList extends Component {
         let loadView = this.state.isLoading ? (
             <SkeletonLoader/>
         ) : (
-            <CustomFlatList
+            <FlatList
                 data={this.state.data}
                 renderItem={({ item, index }) => <this.Item item={item} index={index} />}
                 keyExtractor={(item, index) => index.toString()} />

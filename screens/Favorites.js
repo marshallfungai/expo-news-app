@@ -58,7 +58,7 @@ const Favorites = (props) => {
 
    let loadView =  isNewsAvailable ? //if news is saved news is available
    (
-    <CustomFlatList
+    <FlatList
     data={ savedNews}
     renderItem={({ item, index }) => <Item item={item} index={index}/>}
     keyExtractor={(item, index) => index.toString()} />
