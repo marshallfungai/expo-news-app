@@ -44,7 +44,7 @@ export default class FeedScreen extends Component {
             <Content padder={false}>
                 <Tabs
                     tabBarUnderlineStyle={{ backgroundColor: '#395475'}}
-                    renderTabBar={()=> Platform.OS === 'android' ? <ScrollableTab/> : <></>} >
+                    renderTabBar={()=> <ScrollableTab/>} >
                     <Tab
                         tabStyle={{backgroundColor: '#395475'}}
                         activeTabStyle={{backgroundColor: '#cc232a'}}
