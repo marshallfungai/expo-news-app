@@ -1,42 +1,61 @@
-import React, { Component } from 'react';
-import { ActivityIndicator, StatusBar , SafeAreaView} from 'react-native';
+import 'react-native-gesture-handler';
+import {Ionicons} from '@expo/vector-icons';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {SplashScreen} from 'expo';
 import * as Font from 'expo-font';
-import { Ionicons } from '@expo/vector-icons';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import MainScreenRouter from './screens/index';
-import {SavedNewsProvider} from './context/savedNewsContext';
+import * as React from 'react';
+import {Platform, StatusBar, StyleSheet, View} from 'react-native';
 
-export default class Login extends Component {
-  static navigationOptions = {
-    header: null
-  }
+import BottomTabNavigator from './src/navigation/BottomTabNavigator';
 
-  state = {
-    isReady: false
-  }
+const Stack = createStackNavigator();
 
-  componentDidMount = async() => {
-    await Font.loadAsync({
-      Roboto: require('native-base/Fonts/Roboto.ttf'),
-      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-      ...Ionicons.font,
-    })
-    this.setState({ isReady: true })
-  }
+export default function App(props) {
+  const [isLoadingComplete, setLoadingComplete] = React.useState(false);
 
-  render () {
-    if (!this.state.isReady) {
-      return <ActivityIndicator />
+  // Load any resources or data that we need prior to rendering the app
+  React.useEffect(() => {
+    async function loadResourcesAndDataAsync() {
+      try {
+        SplashScreen.preventAutoHide();
+
+        // Load fonts
+        await Font.loadAsync({
+          ...Ionicons.font,
+          'space-mono': require('./src/assets/fonts/SpaceMono-Regular.ttf'),
+        });
+      } catch (e) {
+        // We might want to provide this error information to an error reporting service
+        console.warn(e);
+      } finally {
+        setLoadingComplete(true);
+        SplashScreen.hide();
+      }
     }
-    return (
-      <SafeAreaProvider >
 
-        <StatusBar barStyle="dark-content" />
-        <SavedNewsProvider>
-           <MainScreenRouter />
-        </SavedNewsProvider>
-        
-      </SafeAreaProvider>
-    )
+    loadResourcesAndDataAsync();
+  }, []);
+
+  if (!isLoadingComplete && !props.skipLoadingScreen) {
+    return null;
+  } else {
+    return (
+        <View style={styles.container}>
+          {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen name="Root" component={BottomTabNavigator} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </View>
+    );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+});
