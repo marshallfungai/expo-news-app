@@ -1,5 +1,5 @@
 import React from "react";
-import {Text} from "react-native";
+import {Text, View} from "react-native";
 import {Image, ListItem, Tile} from "react-native-elements";
 
 export default (props) => {
@@ -8,6 +8,7 @@ export default (props) => {
         imageSrc={{ uri: article.urlToImage }}
         title={article.title}
         caption="Some Caption Text"
+        containerStyle={{marginBottom: 5,  elevation: 5}}
     />
 }
 

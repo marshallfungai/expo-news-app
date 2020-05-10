@@ -1,21 +1,68 @@
 import React, {PureComponent} from 'react';
-import { StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import {fetchOfflineBookmarks, toggleBookmarkStatus} from "../../store/actions/news";
+import {connect} from "react-redux";
+import OldArticle from "../../components/OldArticle";
 
-export default class LandingScreen extends PureComponent{
+class LandingScreen extends PureComponent{
 
-  render() {
-    return (
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <Text> Bookmarks Landing Screen</Text>
-        </ScrollView>
-    );
-  }
+    componentDidMount() {
+
+    }
+
+    render() {
+        const bookmarkedItems = this.props.bookmarkedItems
+        if (!bookmarkedItems.length){
+            return (
+                <View style={[styles.container, {alignItems: 'center', justifyContent: 'center'}]}>
+                    <Text>You haven't bookmarked anything</Text>
+                </View>
+            )
+        }
+
+        return (
+            <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+                {
+                    bookmarkedItems.map((article, index) => (<OldArticle
+                            key={JSON.stringify(article)}
+                            article={article}
+                            isBookmarked={this._isBookmarked(article)}
+                            toggleBookmarkStatus={this._onBookmarkPress}/>
+                    ))
+                }
+            </ScrollView>
+        );
+    }
+
+    _onBookmarkPress = (article) => {
+        this.props.toggleBookmarkStatus(article);
+    }
+
+    _isBookmarked = (article) => {
+        return this.props.bookmarkedItems.find(_article => _article.url === article.url)
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+    },
 });
+
+const mapStateToProps = state => {
+
+    return {
+        bookmarkedItems: state.newsReducer.bookmarked
+    };
+};
+
+const matchDispatchToProps = dispatch => {
+    return {
+        toggleBookmarkStatus: (article) => dispatch(toggleBookmarkStatus(article)),
+        fetchOfflineBookmarks: () => dispatch(fetchOfflineBookmarks()),
+    };
+};
+
+export default connect( mapStateToProps,  matchDispatchToProps )(LandingScreen);

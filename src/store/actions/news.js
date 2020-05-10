@@ -1,4 +1,4 @@
-import { FETCH_NEWS } from './actionTypes';
+import {FETCH_BOOKMARKED_ITEMS, FETCH_NEWS, TOGGLE_BOOKMARK_STATUS} from './actionTypes';
 import { AsyncStorage } from 'react-native';
 import axios from "axios";
 
@@ -13,7 +13,7 @@ export const fetchNews = fetchParams => async dispatch => {
             country: 'tr',
             language: 'tr'
         }
-    }).then((response) => {
+    }).then(async (response) => {
         dispatch({
             type: FETCH_NEWS,
             payload: {
@@ -21,8 +21,31 @@ export const fetchNews = fetchParams => async dispatch => {
                 articles: response.data.articles
             }
         });
-        AsyncStorage.setItem (category, JSON.stringify(response));
-    }).catch((error) => {
-        console.log(error);
+        await AsyncStorage.setItem (category, JSON.stringify(response));
+    }).catch(async (error) => {
+        const offlineData = await AsyncStorage.getItem(category);
+        dispatch({
+            type: FETCH_NEWS,
+            payload: {
+                category: category,
+                articles: offlineData ? JSON.parse(offlineData) : []
+            }
+        });
     })
+};
+
+export const toggleBookmarkStatus = article => async dispatch => {
+    dispatch({
+        type: TOGGLE_BOOKMARK_STATUS,
+        payload: article
+    });
+};
+
+export const fetchOfflineBookmarks = article => async dispatch => {
+    const offlineData = await AsyncStorage.getItem('bookmarkedItems');
+
+    dispatch({
+        type: FETCH_BOOKMARKED_ITEMS,
+        payload: offlineData ? JSON.parse(offlineData) : []
+    });
 };

@@ -1,9 +1,8 @@
-import React, {PureComponent, useState} from 'react';
-import { StyleSheet, ActivityIndicator} from 'react-native';
+import React, {PureComponent} from 'react';
+import {ActivityIndicator, RefreshControl, StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {fetchNews} from "../../store/actions/news";
+import {fetchNews, toggleBookmarkStatus} from "../../store/actions/news";
 import {connect} from "react-redux";
-import {ListItem} from "react-native-elements";
 import OldArticle from "../../components/OldArticle";
 import LatestArticle from "../../components/LatestArticle";
 
@@ -41,8 +40,24 @@ class CategoryLandingScreen extends PureComponent{
             )
         } else {
             const categoryArticles = this.props.categories[category]
+
+            if (!categoryArticles.length){
+                return (
+                    <View style={[styles.container, {alignItems: 'center', justifyContent: 'center'}]}>
+                        <Text>Nothing has been published in this category</Text>
+                    </View>
+                )
+            }
+
             return (
-                <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+                <ScrollView
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={false}
+                            title={'Updating news'}
+                            onRefresh={() => this._fetchNews(category)}/>
+                    }
+                    style={styles.container} contentContainerStyle={styles.contentContainer}>
                     {
                         categoryArticles.map((article, index) => {
                             if(index === 0) {
@@ -52,7 +67,9 @@ class CategoryLandingScreen extends PureComponent{
                             } else {
                                 return <OldArticle
                                     key={JSON.stringify(article)}
-                                    article={article}/>
+                                    article={article}
+                                    isBookmarked={this._isBookmarked(article)}
+                                    toggleBookmarkStatus={this._onBookmarkPress}/>
                             }
                         })
                     }
@@ -68,6 +85,15 @@ class CategoryLandingScreen extends PureComponent{
 
         this.props.fetchNews(fetchParams);
     }
+
+    _onBookmarkPress = (article) => {
+        console.log('initial', article);
+        this.props.toggleBookmarkStatus(article);
+    }
+
+    _isBookmarked = (article) => {
+        return this.props.bookmarkedItems.find(_article => _article.url === article.url)
+    }
 }
 
 const styles = StyleSheet.create({
@@ -80,13 +106,15 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
 
     return {
-        categories: state.newsReducer.categories
+        categories: state.newsReducer.categories,
+        bookmarkedItems: state.newsReducer.bookmarked
     };
 };
 
 const matchDispatchToProps = dispatch => {
     return {
         fetchNews: (fetchParams) => dispatch(fetchNews(fetchParams)),
+        toggleBookmarkStatus: (article) => dispatch(toggleBookmarkStatus(article)),
     };
 };
 

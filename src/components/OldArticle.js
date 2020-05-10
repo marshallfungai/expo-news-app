@@ -6,6 +6,7 @@ import {MaterialCommunityIcons} from "@expo/vector-icons";
 
 export default (props) => {
     const article = props.article
+    const isBookmarked = props.isBookmarked
     return <ListItem
         containerStyle={{margin: 10, elevation: 3}}
         leftAvatar={{ rounded: false, size: 'large', source: { uri: article.urlToImage } }}
@@ -13,9 +14,11 @@ export default (props) => {
         titleProps={{numberOfLines: 3}}
         subtitle={
             <View style={{flexDirection: 'row', marginTop: 10, justifyContent: 'space-between'}}>
-                <Text style={{fontSize: 11}}>{moment(article.publishedAt).format('LL')}</Text>
-                <Text style={{fontSize: 11}}>{moment(article.publishedAt).fromNow()}</Text>
-                <MaterialCommunityIcons name={'bookmark'} color={'grey'} size={16}/>
+                <Text style={{fontSize: 11, textTransform: 'capitalize'}}>{moment(article.publishedAt).format('LL')}</Text>
+                <Text style={{fontSize: 11, textTransform: 'capitalize'}}>{moment(article.publishedAt).fromNow()}</Text>
+                <MaterialCommunityIcons
+                    onPress={() => props.toggleBookmarkStatus(article)}
+                    name={'bookmark'} color={isBookmarked ? '#5472d3' : 'grey'} size={16}/>
             </View>
         }
     />
