@@ -4,6 +4,8 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {fetchNews} from "../../store/actions/news";
 import {connect} from "react-redux";
 import {ListItem} from "react-native-elements";
+import OldArticle from "../../components/OldArticle";
+import LatestArticle from "../../components/LatestArticle";
 
 class CategoryLandingScreen extends PureComponent{
 
@@ -42,13 +44,17 @@ class CategoryLandingScreen extends PureComponent{
             return (
                 <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
                     {
-                        categoryArticles.map(article => (
-                            <ListItem
-                                key={JSON.stringify(article)}
-                                bottomDivider={true}
-                                title={article.title}
-                                subtitle={article.description}/>
-                        ))
+                        categoryArticles.map((article, index) => {
+                            if(index === 0) {
+                                return <LatestArticle
+                                    key={JSON.stringify(article)}
+                                    article={article}/>
+                            } else {
+                                return <OldArticle
+                                    key={JSON.stringify(article)}
+                                    article={article}/>
+                            }
+                        })
                     }
                 </ScrollView>
             );
