@@ -19,7 +19,7 @@ export default () => (
             component={LandingScreen}
             options={({ navigation, route }) => ({
                 headerTitle: 'Settings',
-                headerLeft: () => ( <MenuButton navigation={navigation}/> ),
+                //headerLeft: () => ( <MenuButton navigation={navigation}/> ),
             })}
         />
 

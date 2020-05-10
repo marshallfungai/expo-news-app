@@ -19,7 +19,7 @@ export default () => (
             component={LandingScreen}
             options={({ navigation, route }) => ({
                 headerTitle: 'Bookmarks',
-                headerLeft: () => ( <MenuButton navigation={navigation}/> ),
+                //headerLeft: () => ( <MenuButton navigation={navigation}/> ),
             })}
         />
 

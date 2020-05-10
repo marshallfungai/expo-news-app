@@ -82,7 +82,8 @@ const CategoriesNavigator = () => (
             name="Landing"
             component={CategoryLandingScreen}
             options={({ navigation, route }) => ({
-                headerTitle: 'Top Headlines',
+                headerTitle: route.params.category,
+                headerTitleStyle: {textTransform: 'capitalize'},
                 headerLeft: () => ( <MenuButton navigation={navigation}/> ),
             })}
         />
