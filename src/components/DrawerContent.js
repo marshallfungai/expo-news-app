@@ -7,13 +7,13 @@ import DrawerLabel from "./DrawerLabel";
 export default class NavigationDrawerContent extends PureComponent{
     render () {
         const menuItems = [
-            {icon: 'newspaper', label: 'Top Headlines', category: '', route: 'HeadlinesNewsListing'},
-            {icon: 'currency-try', label: 'Business', category: 'business', route: 'CategoryNewsListing'},
-            {icon: 'flask-outline', label: 'Science', category: 'science', route: 'CategoryNewsListing'},
-            {icon: 'react', label: 'Technology', category: 'technology', route: 'CategoryNewsListing'},
-            {icon: 'stethoscope', label: 'Health', category: 'health', route: 'CategoryNewsListing'},
-            {icon: 'basketball', label: 'Sports', category: 'sports', route: 'CategoryNewsListing'},
-            {icon: 'guitar-acoustic', label: 'Entertainment', category: 'entertainment', route: 'CategoryNewsListing'},
+            {icon: 'newspaper', label: 'Top Headlines', category: 'latest', route: 'HeadlinesNewsListing'},
+            {icon: 'currency-try', label: 'Business', category: 'business', route: 'HeadlinesNewsListing'},
+            {icon: 'flask-outline', label: 'Science', category: 'science', route: 'HeadlinesNewsListing'},
+            {icon: 'react', label: 'Technology', category: 'technology', route: 'HeadlinesNewsListing'},
+            {icon: 'stethoscope', label: 'Health', category: 'health', route: 'HeadlinesNewsListing'},
+            {icon: 'basketball', label: 'Sports', category: 'sports', route: 'HeadlinesNewsListing'},
+            {icon: 'guitar-acoustic', label: 'Entertainment', category: 'entertainment', route: 'HeadlinesNewsListing'},
         ];
         return(
             <SafeAreaView style={{flex: 1}} forceInset={{ top: 'always', horizontal: 'never' }}>

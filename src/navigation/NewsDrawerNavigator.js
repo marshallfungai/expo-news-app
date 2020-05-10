@@ -3,15 +3,11 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
 import NavigationDrawerContent from "../components/DrawerContent";
 import MenuButton from "../components/MenuButton";
-import LandingScreen from "../screens/news/LandingScreen";
 import DummyScreen from "../screens/utilities/LandingScreen";
 import CategoryLandingScreen from "../screens/news/CategoryLandingScreen";
-import SettingsNavigator from "./SettingsNavigator";
-import BookmarksNavigator from "./BookmarksNavigator";
 
 const Drawer = createDrawerNavigator();
-const HeadLineStack = createStackNavigator();
-const CategoryStack = createStackNavigator();
+const HeadlinesStack = createStackNavigator();
 
 export default () => (
     <Drawer.Navigator
@@ -27,15 +23,7 @@ export default () => (
 
         <Drawer.Screen
             name="HeadlinesNewsListing"
-            component={HeadlinesNavigator}
-            options={({ navigation, route }) => ({
-
-            })}
-        />
-
-        <Drawer.Screen
-            name="CategoryNewsListing"
-            component={CategoriesNavigator}
+            component={HeadlinesNavigator }
             options={({ navigation, route }) => ({
 
             })}
@@ -44,56 +32,30 @@ export default () => (
 )
 
 const HeadlinesNavigator = () => (
-    <HeadLineStack.Navigator
+    <HeadlinesStack.Navigator
         initialRouteName="Landing"
         headerMode="screen"
         screenOptions={{
 
         }}>
 
-        <HeadLineStack.Screen
-            name="Landing"
-            component={LandingScreen}
-            options={({ navigation, route }) => ({
-                headerTitle: 'Top Headlines',
-                headerLeft: () => ( <MenuButton navigation={navigation}/> ),
-            })}
-        />
-
-        <HeadLineStack.Screen
-            name="Dummy"
-            component={DummyScreen}
-            options={({ navigation, route }) => ({
-                headerTitle: 'NewsDetail',
-            })}
-        />
-    </HeadLineStack.Navigator>
-);
-
-const CategoriesNavigator = () => (
-    <CategoryStack.Navigator
-        initialRouteName="Landing"
-        headerMode="screen"
-        screenOptions={{
-
-        }}>
-
-        <CategoryStack.Screen
+        <HeadlinesStack.Screen
             name="Landing"
             component={CategoryLandingScreen}
+            initialParams={{ category: 'latest' }}
             options={({ navigation, route }) => ({
-                headerTitle: route.params.category,
+                headerTitle: route.params ? route.params.category : 'latest',
                 headerTitleStyle: {textTransform: 'capitalize'},
                 headerLeft: () => ( <MenuButton navigation={navigation}/> ),
             })}
         />
 
-        <CategoryStack.Screen
+        <HeadlinesStack.Screen
             name="Dummy"
             component={DummyScreen}
             options={({ navigation, route }) => ({
                 headerTitle: 'NewsDetail',
             })}
         />
-    </CategoryStack.Navigator>
+    </HeadlinesStack.Navigator>
 )
