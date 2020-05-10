@@ -62,12 +62,14 @@ class CategoryLandingScreen extends PureComponent{
                         categoryArticles.map((article, index) => {
                             if(index === 0) {
                                 return <LatestArticle
+                                    openNews={this._loadNewsContent}
                                     key={JSON.stringify(article)}
                                     article={article}/>
                             } else {
                                 return <OldArticle
                                     key={JSON.stringify(article)}
                                     article={article}
+                                    openNews={this._loadNewsContent}
                                     isBookmarked={this._isBookmarked(article)}
                                     toggleBookmarkStatus={this._onBookmarkPress}/>
                             }
@@ -87,12 +89,19 @@ class CategoryLandingScreen extends PureComponent{
     }
 
     _onBookmarkPress = (article) => {
-        console.log('initial', article);
         this.props.toggleBookmarkStatus(article);
     }
 
     _isBookmarked = (article) => {
         return this.props.bookmarkedItems.find(_article => _article.url === article.url)
+    }
+
+    _loadNewsContent = (article) => {
+        const {navigation} = this.props;
+        navigation.navigate('NewsDetail' ,{
+            isBookmarked: this._isBookmarked(article),
+            article: article
+        })
     }
 }
 

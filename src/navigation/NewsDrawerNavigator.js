@@ -3,7 +3,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
 import NavigationDrawerContent from "../components/DrawerContent";
 import MenuButton from "../components/MenuButton";
-import DummyScreen from "../screens/utilities/LandingScreen";
+import NewsDetail from "../screens/utilities/LandingScreen";
 import CategoryLandingScreen from "../screens/news/CategoryLandingScreen";
 
 const Drawer = createDrawerNavigator();
@@ -51,10 +51,10 @@ const HeadlinesNavigator = () => (
         />
 
         <HeadlinesStack.Screen
-            name="Dummy"
-            component={DummyScreen}
+            name="NewsDetail"
+            component={NewsDetail}
             options={({ navigation, route }) => ({
-                headerTitle: 'NewsDetail',
+                headerTitle: 'News Detail',
             })}
         />
     </HeadlinesStack.Navigator>

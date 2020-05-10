@@ -8,7 +8,15 @@ export default (props) => {
     const article = props.article
     const isBookmarked = props.isBookmarked
     return <ListItem
-        containerStyle={{margin: 10, elevation: 3}}
+        onPress={() => props.openNews(article)}
+        containerStyle={{
+            margin: 10,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.5,
+            shadowRadius: 2,
+            elevation: 2,
+        }}
         leftAvatar={{ rounded: false, size: 'large', source: { uri: article.urlToImage } }}
         title={article.title}
         titleProps={{numberOfLines: 3}}

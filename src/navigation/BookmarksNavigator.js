@@ -1,8 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import MenuButton from "../components/MenuButton";
 import LandingScreen from "../screens/bookmarks/LandingScreen";
-import DummyScreen from "../screens/utilities/LandingScreen";
+import NewsDetail from "../screens/utilities/LandingScreen";
 
 const HeadLineStack = createStackNavigator();
 
@@ -19,15 +18,14 @@ export default () => (
             component={LandingScreen}
             options={({ navigation, route }) => ({
                 headerTitle: 'Bookmarks',
-                //headerLeft: () => ( <MenuButton navigation={navigation}/> ),
             })}
         />
 
         <HeadLineStack.Screen
-            name="Dummy"
-            component={DummyScreen}
+            name="NewsDetail"
+            component={NewsDetail}
             options={({ navigation, route }) => ({
-                headerTitle: 'Dummy',
+                headerTitle: 'News Detail',
             })}
         />
     </HeadLineStack.Navigator>

@@ -29,19 +29,19 @@ export default function BottomTabNavigator({ navigation, route }) {
                 name="Bookmarks"
                 component={BookmarksNavigator}
                 options={{
-                    title: 'Bookmarks',
+                    title: 'My Bookmarks',
                     tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="book-multiple" />,
                 }}
             />
 
-            <BottomTab.Screen
+            {/*<BottomTab.Screen
                 name="Settings"
                 component={SettingsNavigator}
                 options={{
                     title: 'Settings',
                     tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="settings" />,
                 }}
-            />
+            />*/}
         </BottomTab.Navigator>
     );
 }

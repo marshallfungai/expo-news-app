@@ -28,6 +28,7 @@ class LandingScreen extends PureComponent{
                             key={JSON.stringify(article)}
                             article={article}
                             isBookmarked={this._isBookmarked(article)}
+                            openNews={this._loadNewsContent}
                             toggleBookmarkStatus={this._onBookmarkPress}/>
                     ))
                 }
@@ -41,6 +42,14 @@ class LandingScreen extends PureComponent{
 
     _isBookmarked = (article) => {
         return this.props.bookmarkedItems.find(_article => _article.url === article.url)
+    }
+
+    _loadNewsContent = (article) => {
+        const {navigation} = this.props;
+        navigation.navigate('NewsDetail' ,{
+            isBookmarked: this._isBookmarked(article),
+            article: article
+        })
     }
 }
 
