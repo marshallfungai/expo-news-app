@@ -37,8 +37,10 @@ const HeadlinesNavigator = () => (
         initialRouteName="Landing"
         headerMode="screen"
         screenOptions={{
-            headerTintColor: 'black',
-            headerStyle: { backgroundColor: Colors.colorPrimary },
+            headerTintColor: 'white',
+            headerStyle: {
+                backgroundColor: Colors.colorPrimary,
+            },
         }}>
 
         <HeadlinesStack.Screen
@@ -56,7 +58,8 @@ const HeadlinesNavigator = () => (
             name="NewsDetail"
             component={NewsDetail}
             options={({ navigation, route }) => ({
-                headerTitle: 'News Detail',
+                headerTitle: null,
+                headerTransparent: true,
             })}
         />
     </HeadlinesStack.Navigator>

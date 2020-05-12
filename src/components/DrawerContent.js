@@ -8,7 +8,7 @@ export default class NavigationDrawerContent extends PureComponent{
     render () {
         const menuItems = [
             {icon: 'newspaper', label: 'Top Headlines', category: 'latest', route: 'HeadlinesNewsListing'},
-            {icon: 'currency-try', label: 'Business', category: 'business', route: 'HeadlinesNewsListing'},
+            {icon: 'coin', label: 'Business', category: 'business', route: 'HeadlinesNewsListing'},
             {icon: 'flask-outline', label: 'Science', category: 'science', route: 'HeadlinesNewsListing'},
             {icon: 'react', label: 'Technology', category: 'technology', route: 'HeadlinesNewsListing'},
             {icon: 'stethoscope', label: 'Health', category: 'health', route: 'HeadlinesNewsListing'},

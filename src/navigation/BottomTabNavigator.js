@@ -2,7 +2,6 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 import TabBarIcon from '../components/TabBarIcon';
 import NewsDrawerNavigator from "./NewsDrawerNavigator";
-import SettingsNavigator from "./SettingsNavigator";
 import BookmarksNavigator from "./BookmarksNavigator";
 import Colors from "../constants/Colors";
 
@@ -25,8 +24,8 @@ export default function BottomTabNavigator({ navigation, route }) {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    borderTopLeftRadius: 25,
-                    borderTopRightRadius: 25
+                    borderTopLeftRadius: 30,
+                    borderTopRightRadius: 30
                 }}}
             initialRouteName={INITIAL_ROUTE_NAME}>
             <BottomTab.Screen

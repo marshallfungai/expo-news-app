@@ -9,7 +9,7 @@ export default class MenuButton extends PureComponent{
                 <MaterialCommunityIcons
                     onPress={() => this._handleMenuButton()}
                     name={'menu'}
-                    color={'black'}
+                    color={'white'}
                     size={30}
                     style={{paddingLeft: 20}}/>
             </View>
