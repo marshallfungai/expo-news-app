@@ -5,6 +5,7 @@ import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import {fetchOfflineBookmarks} from "./store/actions/news";
 import {connect} from "react-redux";
 import {createStackNavigator} from "@react-navigation/stack";
+import Colors from "./constants/Colors";
 
 const Stack = createStackNavigator();
 
@@ -16,7 +17,7 @@ class WrapperClass extends PureComponent{
     render() {
         return (
             <View style={styles.container}>
-                {Platform.OS === 'ios' && <StatusBar barStyle="dark-content"/>}
+                <StatusBar barStyle="light-content" backgroundColor={Colors.colorPrimaryDark}/>
                 <NavigationContainer>
                     <Stack.Navigator>
                         <Stack.Screen name="Root" component={BottomTabNavigator}/>
@@ -30,7 +31,7 @@ class WrapperClass extends PureComponent{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: 'transparent',
     },
 });
 

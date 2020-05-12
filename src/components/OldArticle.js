@@ -10,6 +10,7 @@ export default (props) => {
     return <ListItem
         onPress={() => props.openNews(article)}
         containerStyle={{
+            borderRadius: 10,
             margin: 10,
             shadowColor: '#000',
             shadowOffset: { width: 0, height: 2 },

@@ -3,6 +3,7 @@ import {StyleSheet, Text, View, TouchableOpacity} from "react-native";
 import {Badge, Divider, ListItem} from "react-native-elements";
 import DrawerItem from "@react-navigation/drawer/src/views/DrawerItem";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
+import Colors from "../constants/Colors";
 
 export default class DrawerLabel extends PureComponent{
     render() {
@@ -18,7 +19,7 @@ export default class DrawerLabel extends PureComponent{
                                     onPress={() => this.props.navHandler(item.route, item.category)}
                                     icon={() => <MaterialCommunityIcons
                                         name={item.icon} size={24}
-                                        color='black'/>
+                                        color={Colors.colorPrimaryDark}/>
                                     }
                                     style={{flex: 1}}
                                     label={() => (
@@ -26,7 +27,7 @@ export default class DrawerLabel extends PureComponent{
                                     )}
                                 />
                             </View>
-                            <Divider style={{backgroundColor: 'black'}}/>
+                            <Divider style={{backgroundColor: Colors.colorPrimaryDark}}/>
                         </View>
                     }
                 />
@@ -36,7 +37,7 @@ export default class DrawerLabel extends PureComponent{
 
 const styles = StyleSheet.create({
     labelDefinition: {
-        color: 'black',
+        color: Colors.colorPrimaryDark,
         textTransform: 'capitalize',
     },
 });

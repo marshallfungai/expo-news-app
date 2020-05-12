@@ -5,6 +5,7 @@ import NavigationDrawerContent from "../components/DrawerContent";
 import MenuButton from "../components/MenuButton";
 import NewsDetail from "../screens/utilities/LandingScreen";
 import CategoryLandingScreen from "../screens/news/CategoryLandingScreen";
+import Colors from "../constants/Colors";
 
 const Drawer = createDrawerNavigator();
 const HeadlinesStack = createStackNavigator();
@@ -36,7 +37,8 @@ const HeadlinesNavigator = () => (
         initialRouteName="Landing"
         headerMode="screen"
         screenOptions={{
-
+            headerTintColor: 'black',
+            headerStyle: { backgroundColor: Colors.colorPrimary },
         }}>
 
         <HeadlinesStack.Screen

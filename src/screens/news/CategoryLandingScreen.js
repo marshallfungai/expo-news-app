@@ -110,6 +110,11 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
     },
+
+    contentContainer: {
+        bottom: 50,
+        //top: 0,
+    }
 });
 
 const mapStateToProps = state => {
