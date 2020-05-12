@@ -39,7 +39,7 @@ const HeadlinesNavigator = () => (
         screenOptions={{
             headerTintColor: 'white',
             headerStyle: {
-                backgroundColor: Colors.colorPrimary,
+                backgroundColor: 'rgba(12,71,161,.9)',
             },
         }}>
 
