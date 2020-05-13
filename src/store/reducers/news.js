@@ -3,7 +3,8 @@ import { AsyncStorage } from 'react-native';
 
 const initialState = {
     categories: {},
-    bookmarked: []
+    bookmarked: [],
+
 };
 
 const reducer = (state = initialState, action) => {
